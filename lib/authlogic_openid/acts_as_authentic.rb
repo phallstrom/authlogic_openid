@@ -51,14 +51,6 @@ module AuthlogicOpenid
         end
       end
       
-      # Set the openid_identifier field and also resets the persistence_token if this value changes.
-      def openid_identifier=(value)
-        write_attribute(:openid_identifier, value.blank? ? nil : OpenID.normalize_url(value))
-        reset_persistence_token if openid_identifier_changed?
-      rescue OpenID::DiscoveryFailure => e
-        @openid_error = e.message
-      end
-      
       # This is where all of the magic happens. This is where we hook in and add all of the OpenID sweetness.
       #
       # I had to take this approach because when authenticating with OpenID nonces and what not are stored in database
