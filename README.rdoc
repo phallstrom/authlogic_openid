@@ -1,3 +1,14 @@
+= Differences from http://github.com/binaryfeed/authlogic_openid
+
+My particular use case does not store the openid_identifier as a legitimate
+URL. We only store the hostname.  So trying to normalize it messes with the
+application.  Additionally overriding it in that manner seriously messes up
+Factory Girl. We do lose the persistence_token reset when the identifier
+changes however.
+
+add_to_base is deprecated in Rails3 so we now use add(:base,...)
+
+
 = Differences from http://github.com/mreinsch/authlogic_openid
 
 mreinsch did a great job of updating this plugin so that it works with the updated ruby-openid and
